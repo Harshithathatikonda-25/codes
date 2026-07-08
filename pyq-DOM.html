@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>DOM Example</title>
+
+<style>
+
+body{
+font-family:Arial;
+text-align:center;
+background:#f0f0f0;
+}
+
+input,select{
+margin:8px;
+padding:8px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1 id="heading">Student Registration</h1>
+
+<button onclick="changeHeading()">Change Heading</button>
+
+<br><br>
+
+<form onsubmit="return validate()">
+
+<input type="text" id="name" placeholder="Name"><br>
+
+<input type="email" id="email" placeholder="Email"><br>
+
+<input type="text" id="contact" placeholder="Contact"><br>
+
+<input type="radio" name="gender">Male
+
+<input type="radio" name="gender">Female
+
+<br><br>
+
+<input type="submit">
+
+</form>
+
+<p id="msg" style="color:red"></p>
+
+<button onclick="changeColor()">Change Background</button>
+
+<script>
+
+function changeHeading(){
+document.getElementById("heading").innerHTML="Learning Management System";
+}
+
+function validate(){
+
+let name=document.querySelector("#name").value;
+
+let email=document.querySelector("#email").value;
+
+let contact=document.querySelector("#contact").value;
+
+let gender=document.querySelector('input[name="gender"]:checked');
+
+if(name==""){
+msg.innerHTML="Enter Name";
+return false;
+}
+
+if(email.indexOf("@")==-1 || email.indexOf(".")==-1){
+msg.innerHTML="Invalid Email";
+return false;
+}
+
+if(contact.length!=10 || isNaN(contact)){
+msg.innerHTML="Contact must be 10 digits";
+return false;
+}
+
+if(gender==null){
+msg.innerHTML="Select Gender";
+return false;
+}
+
+return true;
+
+}
+
+function changeColor(){
+document.body.style.background="lightblue";
+}
+
+</script>
+
+</body>
+</html>
