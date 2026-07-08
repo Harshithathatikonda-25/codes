@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app="regApp">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<style>
+body{
+font-family:Arial;
+background-color:#f2f2f2;
+}
+.container{
+width:400px;
+margin:auto;
+padding:20px;
+background:white;
+border-radius:10px;
+}
+input{width:100%;
+padding:8px;
+margin;5px;
+}
+.error{
+color:red;
+font-size:14px;
+}
+input.ng-invalid.ng-touched{
+border:2px solid red;
+}
+input ng-valid.ng-touched{
+border:2px solid green;
+}
+button{
+padding:10px;
+width:100%;
+}
+</style>
+</head>
+<body ng-controller="regCtrl">
+<div class="container">
+<form name="regForm">
+
+Username
+<input type="text" name="uname"ng-model="user.username"ng-pattern="/^[A-Z][A-Za-z]{3,7}$/" required>
+<div class="error"
+ng-show="regForm.uname.$touched && regForm.uname.$invalid">
+Username should start with uppercase and length 4-8.
+</div>
+Password
+<input type="password" name="pass"ng-model="user.password"required>
+Confirm Password
+<input type="password" name="cpass" ng-model="user.cpassword"required>
+<div class="error"
+ng-show="user.password!=user.cpassword">
+Passwords do not match.
+</div>
+
+Email
+<input type="email" name="email" ng-model="user.email" required>
+<div class="error"ng-show="regForm.email.$touched && regForm.email.$invalid">
+Invalid Email.
+</div>
+
+Phone Number
+<input type="phone" name="phone"ng-model="user.phone"ng-pattern="/^[0-9]{10}$/" required>
+<div class="error"
+ng-show="regForm.phone.$touched && regForm.phone.$invalid">
+Phone number should be 10 digits.
+</div>
+<button
+ng-disabled="regForm.$invalid" || user.password!=user.cpassword">
+Submit
+</button>
+</form>
+</div>
+<script>
+angular.module("regApp",[])
+.controller("regCtrl",function($scope){});
+</script>
+</body>
+</html>
