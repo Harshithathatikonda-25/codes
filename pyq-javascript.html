@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Records</title>
+</head>
+
+<body>
+
+<h2>Student Record Management</h2>
+
+Name:
+<input type="text" id="name"><br><br>
+
+Roll No:
+<input type="text" id="roll"><br><br>
+
+Marks1:
+<input type="number" id="m1"><br><br>
+
+Marks2:
+<input type="number" id="m2"><br><br>
+
+Marks3:
+<input type="number" id="m3"><br><br>
+
+Marks4:
+<input type="number" id="m4"><br><br>
+
+Marks5:
+<input type="number" id="m5"><br><br>
+
+<button onclick="addStudent()">Add Student</button>
+
+<br><br>
+
+<table border="1" id="table">
+<tr>
+<th>Name</th>
+<th>Roll No</th>
+<th>Total</th>
+<th>Average</th>
+<th>Percentage</th>
+<th>Grade</th>
+</tr>
+</table>
+
+<script>
+
+function addStudent(){
+
+let name=document.getElementById("name").value;
+let roll=document.getElementById("roll").value;
+
+let m1=Number(document.getElementById("m1").value);
+let m2=Number(document.getElementById("m2").value);
+let m3=Number(document.getElementById("m3").value);
+let m4=Number(document.getElementById("m4").value);
+let m5=Number(document.getElementById("m5").value);
+
+let total=m1+m2+m3+m4+m5;
+let avg=total/5;
+let per=avg;
+
+let grade;
+
+if(per>=90)
+grade="A";
+else if(per>=75)
+grade="B";
+else if(per>=60)
+grade="C";
+else if(per>=40)
+grade="D";
+else
+grade="Fail";
+
+let row=document.getElementById("table").insertRow();
+
+row.insertCell(0).innerHTML=name;
+row.insertCell(1).innerHTML=roll;
+row.insertCell(2).innerHTML=total;
+row.insertCell(3).innerHTML=avg;
+row.insertCell(4).innerHTML=per+"%";
+row.insertCell(5).innerHTML=grade;
+
+}
+
+</script>
+
+</body>
+</html>
