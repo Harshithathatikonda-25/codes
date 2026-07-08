@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="itemApp">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="ItemCtrl">
+<h2>Item Management</h2>
+Name:
+<input type="text"ng-model="item.name><br><br>
+
+Category:
+<input type="text" ng-model="item.category"><br><br>
+Price:
+<input type="number" ng-model="item.price"><br><br>
+<button ng-click="addItem()">Add Item</button>
+<br><br>
+Search:
+<input type="text" ng-model="searchText">
+<br><br>
+<table border="1">
+<tr>
+<th>Name</th>
+<th>Category</th>
+<th>Price</th>
+</tr>
+
+<tr ng-repeat="i in items | filter:searchText">
+<td>{{i.name | uppercase}}</td>
+<td>{{i.category}}</td>
+<td>{{i.price}}</td>
+</tr>
+</table>
+<script>
+angular.module("itemApp",[])
+.controller("ItemCtrl",function($scope){
+$scope.items=[];
+$scope.item={};
+$scope.addItem=function(){
+$scope.items.push(angular.copy($scope.item));
+$scope.item={};
+};
+});
+</script>
+</body>
+</html>
