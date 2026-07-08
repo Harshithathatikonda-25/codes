@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<title>Employee Details</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<style>
+body{
+font-family:Arial;
+margin:30px;
+}
+table{
+border-collapse:collapse;
+width:50%;
+margin-top:30px;
+}
+table,th,td{
+border:1px solid black;
+}
+th{
+background:#ddd;
+padding:10px;
+}
+td{
+padding:10px;
+text-align:center;
+}
+select{
+padding:10px;
+width:200px;
+}
+</style>
+</head>
+<body ng-controller="MainCtrl">
+<h2>Employee Information</h2>
+<select ng-model="sortColumn">
+<option value="">Select Operation</option>
+<option value="name">Name Ascending</option>
+<option value="-name">Name Decending</option>
+<option value="dob">DOB Ascending</option>
+<option value="-dob">DOB Descending</option>
+<option value="salary">Salary Ascending</option>
+<option value="-salary">Salary Descending</option>
+</select>
+<table border="1">
+<tr>
+<th>Name</th>
+<th>DOB</th>
+<th>Gender</th>
+<th>Salary</th>
+</tr>
+<tr ng-repeat="emp in employees | orderBy:sortColumn">
+<td>{{emp.name}}</td>
+<td>{{emp.dob | date:'dd/MM/YYYY'}}</td>
+<td>{{emp.gender}}</td>
+<td>{{emp.salary | currency:'$'}}</td>
+</tr>
+</table>
+<script>
+angular.module('myApp',[])
+.controller("MainCtrl",function($scope){
+$scope.employees=[
+{
+name:"Ram",
+dob:new Date(2003,4,4),
+gender:"Male",
+salary:45321
+},
+{
+name:"Ram",
+dob:new Date(2003,4,4),
+gender:"Male",
+salary:67000
+},
+{
+name:"Ram",
+dob:new Date(2003,4,4),
+gender:"Male",
+salary:1234
+},
+{
+name:"Ram",
+dob:new Date(2003,4,4),
+gender:"Male",
+salary:2300
+},
+{
+name:"Ram",
+dob:new Date(2003,4,4),
+gender:"Male",
+salary:35000
+}
+];
+});
+</script>
+</body>
+</html>
