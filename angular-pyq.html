@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="noteApp">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="NoteCtrl">
+<h2>Notes Management</h2>
+<button ng-click="page='Home'">Home</button>
+<button ng-click="page='add'">addNote</button>
+<button ng-click=page='view'">View Notes</button>
+<div ng-show="page=='home'">
+<h3>Welcome</h3>
+<p>Welcome to Notes Management System</p>
+</div>
+
+<div ng-show="page=='add'">
+Title:
+<input type="text" ng-model="note.title"><br><br>
+
+Description:
+<input type="text" nf-model="note.description"><br><br>
+
+<button ng-click="addNote()">Add</button>
+</div>
+
+<div ng-show="page=='view'">
+<table border="1">
+<tr>
+<th>Title</th>
+<th>Description</th>
+<th>Action</th>
+</tr>
+<tr ng-repeat="n in notes">
+<td>{{n.title}}</td>
+<td>{{n.description}}</td>
+<td>
+<button ng-click="edit(n)">Edit</button>
+<button ng-click="delete($index)">Delete</button>
+</td>
+</tr>
+</table>
+</div>
+<div ng-show="page=='edit'">
+Title:
+<input ng-model="selected.title"><br><br>
+Description:
+<input ng-model="selected.description"><br><br>
+<button ng-click="update()">Save</button>
+</div>
+<script>
+angular.module("noteApp",[])
+.controller("NoteCtrl",function($scope){
+$scope.page="home";
+$scope.notes=[];
+$scope.note={};
+$scope.addNote=function(){
+$scope.notes.push(angular.copy($scope.note));
+$scope.note={};
+};
+$scope.delete=function(i){
+$scope.notes.splice(i,1);
+};
+$scope.edit=function(n){
+$scope.selected=n;
+$scope.page="edit";
+};
+$scope.update=function(){
+$scope.page="view";
+};
+});
+</script>
+</body>
+</html>
