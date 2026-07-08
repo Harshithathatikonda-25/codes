@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js1"></script>
+<style>
+.ng-invalid{border:2px solid red;}
+.ng-valid{border:2px solid green;}
+</style>
+</head>
+<body ng-controller="MainCtrl">
+<form name="fForm" ng-submit="submitForm()" novalidate>
+Name:<input name="name" ng-model="entry.name" required><br>
+Email:<input name="email" type="email" ng-model="entry.email" required><br>
+Phone:<input name="phone" ng-model="entry.phone" ng-pattern="/^[0-9]{10}$/" required><br>
+Gender:
+<input type="radio" ng-model="entry.gender" value="Male">Male
+<input type="radio" ng-model="entry.gender" value="Female">Female<br>
+Feedback:<textarea ng-model="entry.feedback" required></textarea><br>
+<button ng-disabled="fForm.$invalid">Submit</button>
+</form>
+<table border="1">
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Gender</th>
+<th>Feedback</th>
+</tr>
+<tr ng-repeat="e in entries">
+<td>{{e.name}}</td>
+<td>{{e.email}}</td>
+<td>{{e.phone}}</td>
+<td>{{e.gender}}</td>
+<td>{{e.feedback}}</td>
+</tr>
+</table>
+<script>
+angular.module('myApp',[])
+.controller('MainCtrl',function($scope){
+$scope.entries=[];
+$scope.entry={};
+$scope.submitForm=function(){
+$scope.entries.push(angular.copy($scope.entry));
+$scope.entry={};
+$scope.fForm.$setPristine();
+};
+});
+</script>
+</body>
+</html>
