@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HTML Forms</title>
+</head>
+<body>
+<h1>Registration Form</h1>
+<fieldset>
+<form action="/submit.php" method="post">
+<label for="username">Name:</label>
+<input type="text" id=username"name="username"required placeholder="Enter your name">
+<br><br>
+<label for="password">Password:</label>
+<input type="password" id="password"name="password"required>
+<br><br>
+<label>Gender:</label>
+<label><input type="radio"name="gender"value="male">Male</label>
+<label><input type="radio" name="gender"value="female">Female</lable>
+<br><br>
+<label for="country">Country:</label>
+<select id="country"name="country"required>
+<option value="">Select</option>
+<option value="usa">USA</option>
+<option value="uk">UK</option>
+<option value="india">INDIA</option>
+</select>
+<br><br>
+<label>Skills:</label>
+<label><input type="checkbox"name="skills"value="HTML">HTML</label>
+<label><input type="checkbox"name="skills"value="CSS">CSS</label>
+<label><input type="checkbox"name="skills"value="JavaScript">Javascript</label>
+<br><br>
+<label for="file"<UploadResume:</label>
+<input type="file"id="file"name="resume" accept=".pdf,.doc">
+<br><br>
+<button type="submit">Submit</button>
+<button type="reset">Reset</button>
+</form>
+</fieldset>
+</body>
+</html>

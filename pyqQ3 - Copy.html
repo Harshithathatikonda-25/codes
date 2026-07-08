@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Records</title>
+</head>
+<body>
+
+<script>
+
+let students = [
+{
+    name:"Ravi",
+    roll:1,
+    marks:[80,85,90,75,70]
+},
+{
+    name:"Priya",
+    roll:2,
+    marks:[65,90,98,95,76]
+},
+{
+    name:"Kiran",
+    roll:3,
+    marks:[87,97,88,90,85]
+}
+];
+
+students.forEach(function(s){
+
+    let total = s.marks.reduce((a,b)=>a+b);
+
+    let avg = total / 5;
+
+    let grade;
+
+    if(avg >= 90)
+        grade = 'A';
+    else if(avg >= 75)
+        grade = 'B';
+    else if(avg >= 60)
+        grade = 'C';
+    else if(avg >= 40)
+        grade = 'D';
+    else
+        grade = 'Fail';
+
+    document.write(
+        "Name: " + s.name +
+        "<br>Roll No: " + s.roll +
+        "<br>Total: " + total +
+        "<br>Average: " + avg +
+        "<br>Grade: " + grade +
+        "<br><br>"
+    );
+
+});
+
+</script>
+
+</body>
+</html>

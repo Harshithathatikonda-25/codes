@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head><title>User Form</title>
+<marquee>Form submitted Successfully</marquee>
+</head>
+<body>
+<form onsubmit="return validateForm()">
+Name:<input type="text"name="name">
+<br><br>
+Email Id:<input type="email" name="email">
+<br><br>
+Password:<input type="password"name="pass">
+<br><br>
+Gender:
+<input type="radio"name="gender"value="Male">Male
+<input type="radio"name="gender" value="female">Female
+<br><br>
+Mobile Number:<input type="text" name="mobile">
+<br><br>
+Date of Birth:<input type="date" name="dob">
+<br><br>
+Address:<textarea name="address">
+</textarea>
+<br><br>
+Country:
+<select name="country">
+<option>India</option>
+<option>USA</option>
+<option>UK</option>
+</select>
+<br><br>
+<input type="reset" value="Reset">
+<input type="submit" value="Submit">
+</form>
+<scrip>
+function validateForm(){
+let name=document.getElementById("name").value;
+let email=document.getElementById("email").value;
+let pass=document.getElementById("pass").value;
+let mobile=document.getElementById("mobile").value;
+let gender=document.getElementById("gender").value;
+
+let nameExp=/^[A-Za-z ]+$/;
+let emailExp=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+let passExp=/^.{5,10}$/;
+let mobileExp=/^[0-9]{10}$/;
+
+if(!nameExp.test(name)){alert("Invalid name");return false;}
+if(!emailExp.test(email)){alert("Invalid email");return false;}
+if(!passExp.test(pass)){alert("password must be 5 to 10 chars");return false;}
+if(!mobileExp.test(mobile)){alert("Invalid mobile");return false;}
+
+let checked=false;
+for(let i=0;i<gender.length;i++){
+if(gender[i].checked) checked=true;
+}
+if(!checked){alert("Select gender");return false;}
+return true;
+}
+</script>
+</body>
+</html>

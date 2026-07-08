@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Form</title>
+</head>
+
+<body>
+  <marquee>Form submitted Successfully</marquee>
+<fieldset>
+<legend><b>User Details</b></legend>
+  <form onsubmit="return validateForm()">
+    Name: <input type="text" id="name"><br><br>
+
+    Email Id: <input type="email" id="email"><br><br>
+
+    Password: <input type="password" id="pass"><br><br>
+<fieldset>
+    Gender:
+    <input type="radio" name="gender" value="Male">Male
+    <input type="radio" name="gender" value="Female">Female
+    <br><br>
+
+    Mobile Number: <input type="text" id="mobile"><br><br>
+
+    Date of Birth: <input type="date" id="dob"><br><br>
+</fieldset>
+    Address:
+    <textarea id="address"></textarea><br><br>
+
+    Country:
+    <select id="country">
+      <option>India</option>
+      <option>USA</option>
+      <option>UK</option>
+    </select>
+    <br><br>
+
+    <input type="reset" value="Reset">
+    <input type="submit" value="Submit">
+</fieldset>
+  </form>
+
+  <script>
+    function validateForm() {
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      let pass = document.getElementById("pass").value;
+      let mobile = document.getElementById("mobile").value;
+      let gender = document.getElementsByName("gender");
+
+      let nameExp = /^[A-Za-z ]+$/;
+      let emailExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      let passExp = /^.{5,10}$/;
+      let mobileExp = /^[0-9]{10}$/;
+
+      if (!nameExp.test(name)) {
+        alert("Invalid name");
+        return false;
+      }
+
+      if (!emailExp.test(email)) {
+        alert("Invalid email");
+        return false;
+      }
+
+      if (!passExp.test(pass)) {
+        alert("Password must be 5 to 10 characters");
+        return false;
+      }
+
+      let checked = false;
+      for (let i = 0; i < gender.length; i++) {
+        if (gender[i].checked) {
+          checked = true;
+        }
+      }
+
+      if (!checked) {
+        alert("Please select gender");
+        return false;
+      }
+
+      if (!mobileExp.test(mobile)) {
+        alert("Invalid mobile number");
+        return false;
+      }
+
+      alert("Form submitted Successfully");
+      return true;
+    }
+  </script>
+</body>
+</html>

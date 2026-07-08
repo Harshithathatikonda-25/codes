@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="regApp">
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+<style>
+  .invalid { background-color: pink; }
+  .valid { background-color: lightgreen; }
+  table, td, th { border: 1px solid black; border-collapse: collapse; padding: 5px; }
+</style>
+</head>
+<body ng-controller="RegCtrl">
+
+  <form ng-submit="submitForm()">
+<fieldset>
+    <legend>Student Name:</legend>
+    <input type="text" ng-model="student.name"
+           ng-class="{'valid': student.name, 'invalid': !student.name}"><br>
+
+    Course:
+    <select ng-model="student.course">
+      <option>AI</option><option>Data Science</option><option>Web Development</option>
+    </select><br>
+
+    Duration (months): <input type="number" ng-model="student.duration"><br>
+
+    Course Fee:
+    <input type="number" ng-model="student.fee"
+           ng-class="{'valid': student.fee > 1000, 'invalid': student.fee <= 1000}"><br>
+
+    <button type="submit">Submit</button>
+  </form>
+</fieldset>
+  <table>
+    <tr><th>Name</th><th>Course</th><th>Duration</th><th>Fee</th><th>Total Cost</th></tr>
+    <tr ng-repeat="s in students">
+      <td>{{s.name}}</td><td>{{s.course}}</td><td>{{s.duration}}</td>
+      <td>{{s.fee}}</td><td>{{s.fee * s.duration}}</td>
+    </tr>
+  </table>
+
+<script>
+angular.module('regApp', [])
+.controller('RegCtrl', function($scope) {
+  $scope.students = [];
+  $scope.student = {};
+  $scope.submitForm = function() {
+    if ($scope.student.name && $scope.student.fee > 1000) {
+      $scope.students.push(angular.copy($scope.student));
+      $scope.student = {};
+    }
+  };
+});
+</script>
+</body>
+</html>
